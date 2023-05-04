@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <!-- text  -->
+      <p>{{title | uppercase}}</p>
+      <p>{{title | lowercase}}</p>
+      <p>{{title | titlecase}}</p>
+    </div>
+    <div class="col-12 mt-3">
+      <!-- date -->
+      <p>{{d | date}}</p>
+      <p>{{d | date: 'short'}}</p>
+      <p>{{d | date: 'mediumTime'}}</p>
+     
+    </div>
+    <div class="col-12 mt-3">
+      <!-- currency -->
+      <div class="card">
+        <div class="card-heade">
+         <h5 class="m-3"> CouseName : {{course.CouserName | uppercase}}</h5>
+        </div>
+        <div class="card-body">
+         <p>onOfStd : {{course.onOfStd |number}}</p>
+         <!-- <p>rating :  {{course.rating| number : '1.0-0':'fr'}}</p> -->
+        </div>
+        <div class="card-footer">
+          <p class="text-left">price: {{course.price | currency}}</p>
+          <p class="text-left">price: {{course.price | currency:' EUR'}}</p>
+          <p class="text-left">price: {{course.price | currency:' AUD'}}</p>
+          <p class="text-left">price: {{course.price | currency:' INR'}}</p>
+         <p  class=" text-right">realeaseDate: {{course.realeaseDate |date: 'mediumTime'}}</p>
+        </div>
+      </div>
+        <div class="my-3">
+          <p >{{dataSummary | summary :100}}
+          </p>
+          <!-- multiple pipe -->
+          <p >{{dataSummary | summary :50 | lowercase}}
+          </p>
+
+          <!-- we given default limit to summary pipe -->
+          <p >{{dataSummary | summary | lowercase}}
+          </p>
+
+          <p >{{dataSummary | summary | lowercase}}
+          </p>
+        </div>
+      </div>
+     <div class="col-md-4" *ngFor ="let fArray of stdArray">
+      <div class="card">
+        <div class="card-header">
+          {{fArray.name }}
+        </div>
+        <div class="card-body">
+          {{fArray.size |filepipe }}
+        </div>
+        <div class="card-footer">
+          {{fArray.type}}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="col-sm-6 offset-sm-3 text-center my-4">
+      <input type="text" name="" class="form-control" placeholder="Search by Name" [(ngModel)]="searchbyValue">
+    </div>
+   
+    <div class="col-12">
+      
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Role</th>
+            <th>Age</th>
+            <th>MatchesPlayed</th>
+            <th>TotalRuns</th>
+            <th>TotalWickets</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let players of playersArray | filter:searchbyValue;   index as i">
+            <td>{{i+1}}</td>
+            <td>{{players.name}}</td>
+            <td>{{players.country}}</td>
+            <td>{{players.role}}</td>
+            <td>{{players.age}}</td>
+            <td>{{players.matchesPlayed}}</td>
+            <td>{{players.totalRuns}}</td>
+            <td>{{players.totalWickets}}</td>
+            <td>{{players.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </div>
